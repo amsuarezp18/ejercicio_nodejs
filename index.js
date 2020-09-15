@@ -45,8 +45,7 @@ http
                         </thead> \
                         <tbody>' );
 
-                        for( let suppliers in data){    
-                            console.log(suppliers.idproveedor)
+                        for( let suppliers of data){    
                             resp.write(`<tr><td>${suppliers.idproveedor}</td><td>${suppliers.nombrecompania}</td><td>${suppliers.nombrecontacto}</td></tr>`,);
                         }
                         resp.write(' </tbody> </table>');
@@ -59,6 +58,7 @@ http
         else if ( url_req == "/api/clientes"){
             getCustomers().then((data)=>{
                 // fs module to read data from promise
+                
                 fs.readFile("clientes.html", "utf-8", (err, dat) =>{
                     if( err){
                         resp.writeHead(502, {'Content-type': 'text/html'});
@@ -77,7 +77,7 @@ http
                           </tr> \
                         </thead> \
                         <tbody>');
-                        for( let customer in data){    
+                        for( let customer of data){    
                             resp.write( `<tr><td>${customer.idCliente}</td><td>${customer.NombreCompania}</td><td>${customer.NombreContacto}</td></tr>`);
                         }
                         resp.write(' </tbody> </table>');
