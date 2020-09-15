@@ -32,25 +32,25 @@ http
                         return resp.end('The server had an internal error ')
                     }
                     else{
-                        // Create table
-                        render =
-                            resp.writeHead(200, {'Content-type': 'text/html'});
-                            resp.write(dat);
-                            resp.write(
-                                '<table class="table table-striped"> \
-                                <thead> \
-                                    <tr> \
-                                    <th scope="col">#</th> \
-                                    <th scope="col">First</th> \
-                                    <th scope="col">Last</th> \
-                                    <th scope="col">Handle</th> \
-                                    </tr> \
-                                </thead> \
-                                <tbody> \
-                                </tbody> \
-                                </table>');
-                        
-                        resp.end(render) 
+
+                        resp.writeHead(200, {'Content-type': 'text/html'});
+                        resp.write(dat);
+                        resp.write('<table class="table table-striped"> \
+                        <thead> \
+                          <tr> \
+                            <th scope="col">ID</th> \
+                            <th scope="col">Nombre compañia</th> \
+                            <th scope="col">Nombre contacto</th> \
+                          </tr> \
+                        </thead> \
+                        <tbody>' );
+
+                        for( let suppliers in data){    
+                            console.log(suppliers.idproveedor)
+                            resp.write(`<tr><td>${suppliers.idproveedor}</td><td>${suppliers.nombrecompania}</td><td>${suppliers.nombrecontacto}</td></tr>`,);
+                        }
+                        resp.write(' </tbody> </table>');
+                        resp.end('</body> </html>')  
                     }
                 });
             });
@@ -66,6 +66,22 @@ http
                     }
                     else{
                         //Create table
+                        resp.writeHead(200, {'Content-type': 'text/html'});
+                        resp.write(dat);
+                        resp.write('<table class="table table-striped"> \
+                        <thead> \
+                          <tr> \
+                            <th scope="col">ID</th> \
+                            <th scope="col">Nombre compañia</th> \
+                            <th scope="col">Nombre contacto</th> \
+                          </tr> \
+                        </thead> \
+                        <tbody>');
+                        for( let customer in data){    
+                            resp.write( `<tr><td>${customer.idCliente}</td><td>${customer.NombreCompania}</td><td>${customer.NombreContacto}</td></tr>`);
+                        }
+                        resp.write(' </tbody> </table>');
+                        resp.end('</body> </html>')  
                     }
                 });
             });
