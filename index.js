@@ -21,6 +21,7 @@ http
     .createServer(function(req, resp){
         // get request from user
         var url_req = url.parse(req.url).pathname
+        var render;
 
         if ( url_req == "/api/proveedores"){
             getSuppliers().then((data) =>{
@@ -32,6 +33,24 @@ http
                     }
                     else{
                         // Create table
+                        render =
+                            resp.writeHead(200, {'Content-type': 'text/html'});
+                            resp.write(dat);
+                            resp.write(
+                                '<table class="table table-striped"> \
+                                <thead> \
+                                    <tr> \
+                                    <th scope="col">#</th> \
+                                    <th scope="col">First</th> \
+                                    <th scope="col">Last</th> \
+                                    <th scope="col">Handle</th> \
+                                    </tr> \
+                                </thead> \
+                                <tbody> \
+                                </tbody> \
+                                </table>');
+                        
+                        resp.end(render) 
                     }
                 });
             });
