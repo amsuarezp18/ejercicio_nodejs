@@ -1,0 +1,27 @@
+{
+  "name": "ejercicio_nodejs",
+  "version": "1.0.0",
+  "description": "Ejercicio sobre nodejs de la clase programacion web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amsuarezp18/ejercicio_nodejs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "server"
+  ],
+  "author": "Angela Suarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amsuarezp18/ejercicio_nodejs/issues"
+  },
+  "homepage": "https://github.com/amsuarezp18/ejercicio_nodejs#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}
