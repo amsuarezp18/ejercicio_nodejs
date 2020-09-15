@@ -19,8 +19,44 @@ async function getCustomers(){
 
 http
     .createServer(function(req, resp){
-      resp.writeHead(200, {'Content-type': 'text/html'});
-      resp.end('Hello word')
-      
+        // get request from user
+        var url_req = url.parse(req.url).pathname
+
+        if ( url_req == "/api/proveedores"){
+            getSuppliers().then((data) =>{
+                // fs module to read data from promise
+                fs.readFile("proveedores.html", "utf-8", (err, dat) =>{
+                    if( err){
+                        resp.writeHead(502, {'Content-type': 'text/html'});
+                        return resp.end('The server had an internal error ')
+                    }
+                    else{
+                        // Create table
+                    }
+                });
+            });
+        }
+
+        else if ( url_req == "/api/clientes"){
+            getCustomers().then((data)=>{
+                // fs module to read data from promise
+                fs.readFile("clientes.html", "utf-8", (err, dat) =>{
+                    if( err){
+                        resp.writeHead(502, {'Content-type': 'text/html'});
+                        return resp.end('The server had an internal error ')
+                    }
+                    else{
+                        //Create table
+                    }
+                });
+            });
+            
+        }
+        else{
+            // The page doesn't existe, return a 404
+            resp.writeHead(404, {'Content-type': 'text/html'});
+            resp.end('Sorry, the page you tried can not be found.')
+        
+        }
     })
       .listen(8001)
